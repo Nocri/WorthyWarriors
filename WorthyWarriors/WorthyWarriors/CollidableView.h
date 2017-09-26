@@ -9,7 +9,8 @@ class ViewEngine;
 class CollidableView :
 	public GameView
 {
-	CollidableView();
+protected:
+	CollidableView() {};
 public:
 	virtual ~CollidableView();
 	bool checkCollision(ViewEngine* viewEngine, CollidableView* collidable);

@@ -6,7 +6,8 @@
 
 class GameView
 {
-	GameView();
+protected:
+	GameView() {};
 public:
 	int positionX;
 	int positionY;
