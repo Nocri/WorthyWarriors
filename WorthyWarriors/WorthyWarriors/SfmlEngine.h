@@ -1,6 +1,11 @@
-#pragma once
-#include "ViewEngine.h"
+#ifndef SFMLENGINE_H
+#define SFMLENGINE_H
+
 #include <SFML/Graphics.hpp>
+#include "ViewEngineColor.h"
+#include "ViewEngine.h"
+#include "CollidableBox.h"
+
 class SfmlEngine :
 	public ViewEngine
 {
@@ -14,9 +19,11 @@ public:
 
 	bool isWindowOpen();
 	void interceptUserInput();
-	void checkCollision(CollidableView collidable, CollidableView collidable2);
+	bool checkCollision(CollidableBox* collidable, CollidableBox* collidable2);
 	void drawShape(int shapeSize, int position_x, int position_y, ViewEngineColor color, int shapeEdges, int rotation);
 	void clearWindow();
 	void render();
 };
+
+#endif // !SFMLENGINE_H
 

@@ -1,7 +1,8 @@
 #pragma once
+
 #include <vector>
 #include "ControlsInterface.h"
-#include "CollidableView.h"
+#include "CollidableBox.h"
 #include "ViewEngineColor.h"
 
 class ViewEngine
@@ -26,7 +27,7 @@ public:
 	virtual void clearWindow() = 0;
 	virtual void render() = 0;
 	virtual void interceptUserInput() = 0;
-	virtual void checkCollision(CollidableView collidable, CollidableView collidable2) = 0;
+	virtual bool checkCollision(CollidableBox* collidable, CollidableBox* collidable2) = 0;
 	virtual void drawShape(int shapeSize, int position_x, int position_y, ViewEngineColor color, int shapeEdges, int rotation) = 0;
 	
 	virtual ~ViewEngine() {
@@ -36,4 +37,3 @@ public:
 	};
 
 };
-

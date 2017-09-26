@@ -1,4 +1,6 @@
-#pragma once
+#ifndef VIEWENGINECOLOR_H
+#define VIEWENGINECOLOR_H
+
 struct ViewEngineColor
 {
 	int red;
@@ -10,3 +12,4 @@ struct ViewEngineColor
 
 };
 
+#endif // !VIEWENGINECOLOR_H

@@ -1,26 +1,5 @@
 #include "SfmlEngine.h"
 
-SfmlEngine::SfmlEngine()
-{
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-
-		window.clear();
-		window.draw(shape);
-		window.display();
-	}
-}
-
 SfmlEngine::SfmlEngine(int windowWidth, int windowHeight, const char* windowName, int antialiasingLevel) {
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = antialiasingLevel;
@@ -67,8 +46,19 @@ void SfmlEngine::interceptUserInput() {
 		}
 	}
 };
-void SfmlEngine::checkCollision(CollidableView collidable, CollidableView collidable2) {
-	//ToDo MK implement
+bool SfmlEngine::checkCollision(CollidableBox* collidable, CollidableBox* collidable2) {
+	sf::FloatRect boundingBox, boundingBox2;
+	boundingBox.left = collidable->positionX;
+	boundingBox.top = collidable->positionY;
+	boundingBox.height = collidable->height;
+	boundingBox.width = collidable->width;
+
+	boundingBox2.left = collidable2->positionX;
+	boundingBox2.top = collidable2->positionY;
+	boundingBox2.height = collidable2->height;
+	boundingBox2.width = collidable2->width;
+
+	return boundingBox.intersects(boundingBox2);
 };
 
 void SfmlEngine::drawShape(int shapeSize, int position_x, int position_y, ViewEngineColor color, int shapeEdges, int rotation) {
