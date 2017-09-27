@@ -12,10 +12,7 @@ protected:
 public:
 	virtual ~ArmableCharacter() {};
 	bool isArmed() { return isArmed_; };
-	void pickWeapon(Weapon* newWeapon) {
-		weapon = newWeapon;
-		isArmed_ = true;
-	}
+
 	void throwWeapon() {
 		isArmed_ = false;
 	}
@@ -24,10 +21,16 @@ public:
 			float moveY = (height) * sin((float)(3.14 / 180) *  (rotationAngle));
 			float moveX = (width) * cos((float)(3.14 / 180) * (rotationAngle));
 
-			weapon->positionX = (positionY + height)- moveY;
-			weapon->positionY = (positionX + width) + moveX;
+			weapon->positionX = (positionX )- moveX + height;
+			weapon->positionY = (positionY) - moveY + width;
 			weapon->rotationAngle = rotationAngle;
 		}
+	}
+
+	void pickWeapon(Weapon* newWeapon) {
+		weapon = newWeapon;
+		isArmed_ = true;
+		dragWeapon();
 	}
 
 	void aim(int target_x, int target_y) {

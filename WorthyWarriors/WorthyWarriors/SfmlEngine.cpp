@@ -37,6 +37,10 @@ void SfmlEngine::interceptUserInput() {
 			{
 				listener->onPlayerRight();
 			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
+			{
+				listener->onPlayerDropWeapon();
+			}
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 				listener->onPlayerShoot();
 			}
