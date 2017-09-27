@@ -31,8 +31,14 @@ public:
 	}
 
 	void aim(int target_x, int target_y) {
-		rotationAngle = atan2(target_y - (positionY + height), target_x - (positionX + width));
-		rotationAngle *= (180 / 3.14);
+
+		const float PI = 3.14159265;
+
+		float dx = (positionX + width) - target_x;
+		float dy = (positionY + height) - target_y;
+
+		float rotation = (atan2(dy, dx)) * 180 / PI;
+		rotationAngle = rotation;
 	}
 };
 

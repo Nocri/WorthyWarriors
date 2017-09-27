@@ -20,29 +20,30 @@ void SfmlEngine::interceptUserInput() {
 			if (event.type == sf::Event::Closed) {
 				window->close();
 			}
-			if (event.type == sf::Event::KeyPressed) {
-				if (event.key.code == sf::Keyboard::Up) {
-					listener->onPlayerUp();
-				}
-				if (event.key.code == sf::Keyboard::Down) {
-					listener->onPlayerDown();
-				}
-				if (event.key.code == sf::Keyboard::Left) {
-					listener->onPlayerLeft();
-				}
-				if (event.key.code == sf::Keyboard::Right) {
-					listener->onPlayerRight();
-				}
-				if (event.key.code == sf::Keyboard::F) {
-					listener->onPlayerDropWeapon();
-				}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+			{
+				listener->onPlayerLeft();
 			}
-			if (event.type == sf::Event::MouseButtonPressed) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+			{
+				listener->onPlayerUp();
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			{
+				listener->onPlayerDown();
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+			{
+				listener->onPlayerRight();
+			}
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 				listener->onPlayerShoot();
 			}
-			if (event.type == sf::Event::MouseMoved) {
-				listener->onPlayerTargetChange(event.mouseMove.x, event.mouseMove.y);
-			}
+			int mouseX = sf::Mouse::getPosition(*window).x;
+			int mouseY = sf::Mouse::getPosition(*window).y;
+				listener->onPlayerTargetChange(mouseX, mouseY);
+			
 		}
 	}
 };

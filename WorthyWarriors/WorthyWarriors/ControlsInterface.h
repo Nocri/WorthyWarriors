@@ -9,6 +9,6 @@ public:
 	virtual void onPlayerShoot() = 0;
 	virtual void onPlayerTargetChange(int target_x, int target_y) = 0;
 	virtual void onPlayerDropWeapon() = 0;
-	virtual ~ControlsInterface() = 0;
+	virtual ~ControlsInterface() {};
 };
 
