@@ -9,8 +9,8 @@ class GameView
 protected:
 	GameView() {};
 public:
-	int positionX;
-	int positionY;
+	float positionX;
+	float positionY;
 	int width;
 	int height;
 	int rotationAngle = 0;

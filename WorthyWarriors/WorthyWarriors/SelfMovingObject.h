@@ -1,7 +1,8 @@
 #pragma once
 class SelfMovingObject
 {
-	SelfMovingObject();
+protected:
+	SelfMovingObject() {};
 public:
 	virtual ~SelfMovingObject() {};
 	virtual void move() = 0;
