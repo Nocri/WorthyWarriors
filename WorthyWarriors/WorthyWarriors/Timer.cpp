@@ -19,11 +19,11 @@ void Timer::removeListener(TimerInterface* listener) {
 
 void Timer::startTimer() {
 	startTime = std::clock();
-	std::cout << "inside time = " << std::clock() << " ref inter = " << REFRESH_INTERVAL << "\n";
+	//std::cout << "inside time = " << std::clock() << " ref inter = " << REFRESH_INTERVAL << "\n";
 	isActive = true;
 	while (isActive) {
 		if (((std::clock() - lastRefreshTime) / (double)CLOCKS_PER_SEC) > REFRESH_INTERVAL) {
-			std::cout << "triggered inside\n";
+			//std::cout << "triggered inside\n";
 			lastRefreshTime = std::clock();
 
 			for (TimerInterface* listener : listeners) {

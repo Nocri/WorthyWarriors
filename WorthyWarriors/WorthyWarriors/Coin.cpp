@@ -4,8 +4,8 @@ Coin::Coin(int positionX, int positionY, int value)
 {
 	this->positionX = positionX;
 	this->positionY = positionY;
-	this->height = value * 10;
-	this->width = value * 10;
+	this->height = value;
+	this->width = value;
 	this->value = value;
 	this->color = ViewEngineColor(255, 255, 0, 255);
 }

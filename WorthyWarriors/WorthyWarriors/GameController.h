@@ -11,9 +11,10 @@
 #include "Coin.h"
 #include "WeakWeapon.h"
 #include "ControlsInterface.h"
+#include "ObjectsSpawner.h"
 
 class GameController :
-	public TimerInterface, public ControlsInterface, public ShootingInterface
+	public TimerInterface, public ControlsInterface, public ShootingInterface, public SpawningInterface
 {
 	const int MAX_PROJECTLES;
 	const int MAX_COINS;
@@ -22,11 +23,13 @@ class GameController :
 	const int PLAYER_MOVE = 2;
 
 	ViewEngine* engine;
+	ObjectsSpawner* spawner;
 
 	Player* player;
 	std::vector<GameView*> views;
 	std::vector<Destroyable*> destroyables;
 	std::vector<ArmableCharacter*> armables;
+	std::vector<Enemy*> enemies;
 	std::vector<Projectle*> projectles;
 	std::vector<Coin*> coins;
 	std::vector<Weapon*> weapons;
@@ -46,6 +49,9 @@ public:
 		for (Projectle* projectle : projectles) {
 			projectle->move();
 			projectle->draw(engine);
+		}
+		for (Coin* coin : coins) {
+			coin->draw(engine);
 		}
 		for (ArmableCharacter* armable : armables) {
 			armable->dragWeapon();
@@ -82,5 +88,8 @@ private:
 	};
 	void onPlayerTargetChange(int target_x, int target_y) { player->aim(target_x, target_y); };
 	void onPlayerDropWeapon() { player->throwWeapon(); std::cout << "drop"; };
+
+	virtual void onCoinSpawned(Coin* coin) { this->coins.push_back(coin); };
+	virtual void onEnemySpawned(Enemy* enemy) { this->enemies.push_back(enemy); };
 };
 
