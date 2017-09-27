@@ -18,7 +18,7 @@ void Projectle::move() {
 };
 
 void Projectle::draw(ViewEngine* engine) {
-	engine->drawShape(height, positionX, positionY, color, 3, rotationAngle);
+	engine->drawShape(height, positionX, positionY, color, 3, (-rotationAngle)-30);
 };
 
 
