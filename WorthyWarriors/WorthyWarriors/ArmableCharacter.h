@@ -2,9 +2,13 @@
 #include "SelfMovingObject.h"
 #include "Destroyable.h"
 #include "Weapon.h"
+#include "ShootingInterface.h"
+
 class ArmableCharacter :
 	public Destroyable
 {
+	const int PROJECTLE_SPEED = 5;
+	int shootTries = 0;
 protected:
 	ArmableCharacter() {};
 	Weapon* weapon;
@@ -42,6 +46,19 @@ public:
 
 		float rotation = (atan2(dy, dx)) * 180 / PI;
 		rotationAngle = rotation;
+	}
+
+	void shoot(ShootingInterface* listener) {
+		if (isArmed_) {
+			if (shootTries >= weapon->fireRate) {
+				listener->onShootMade(new Projectle(weapon->positionX, weapon->positionY, rotationAngle, PROJECTLE_SPEED, weapon->firePower));
+				shootTries = 0;
+			}
+			else
+			{
+				shootTries++;
+			}
+		}
 	}
 };
 

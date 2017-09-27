@@ -2,7 +2,7 @@
 #include "CollidableView.h"
 class Weapon : public CollidableView
 {
-protected:
+public:
 	int ammo;
 	int firePower;
 	int fireRate;

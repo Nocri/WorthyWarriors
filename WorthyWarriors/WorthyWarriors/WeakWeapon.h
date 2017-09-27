@@ -3,8 +3,9 @@
 class WeakWeapon :
 	public Weapon
 {
-public:
 	WeakWeapon();
+public:
+	WeakWeapon(int ammo, int firePower, int fireRate);
 	~WeakWeapon();
 	void draw(ViewEngine* engine);
 	void changePosition(int x, int y);

@@ -6,6 +6,14 @@ WeakWeapon::WeakWeapon()
 	width = 7;
 }
 
+WeakWeapon::WeakWeapon(int ammo, int firePower, int fireRate) {
+	this->height = 7;
+	this->width = 7;
+	this->ammo = ammo;
+	this->firePower = firePower;
+	this->fireRate = fireRate;
+}
+
 
 WeakWeapon::~WeakWeapon()
 {

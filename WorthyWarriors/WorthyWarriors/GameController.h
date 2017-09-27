@@ -13,7 +13,7 @@
 #include "ControlsInterface.h"
 
 class GameController :
-	public TimerInterface, public ControlsInterface
+	public TimerInterface, public ControlsInterface, public ShootingInterface
 {
 	const int MAX_PROJECTLES;
 	const int MAX_COINS;
@@ -26,6 +26,7 @@ class GameController :
 	Player* player;
 	std::vector<GameView*> views;
 	std::vector<Destroyable*> destroyables;
+	std::vector<ArmableCharacter*> armables;
 	std::vector<Projectle*> projectles;
 	std::vector<Coin*> coins;
 	std::vector<Weapon*> weapons;
@@ -42,7 +43,13 @@ public:
 		engine->clearWindow();
 
 		player->draw(engine);
-		player->dragWeapon();
+		for (Projectle* projectle : projectles) {
+			projectle->move();
+			projectle->draw(engine);
+		}
+		for (ArmableCharacter* armable : armables) {
+			armable->dragWeapon();
+		}
 		//ToDo export to method
 		for (Weapon* weapon : weapons) {
 			weapon->draw(engine);
@@ -55,9 +62,13 @@ public:
 		}
 	};
 
-	virtual void onRefreshTriggered() {
+	void onRefreshTriggered() {
 		refreshBoard();
 	};
+
+	void onShootMade(Projectle* projectle) {
+		projectles.push_back(projectle);
+	}
 
 private:
 	GameController();
@@ -66,7 +77,9 @@ private:
 	void onPlayerDown() { player->positionY += PLAYER_MOVE; };
 	void onPlayerRight() { player->positionX += PLAYER_MOVE; };
 	void onPlayerLeft() { player->positionX -= PLAYER_MOVE; };
-	void onPlayerShoot() { std::cout << " shoot "; };
+	void onPlayerShoot() { std::cout << " shoot ";
+	player->shoot(this);
+	};
 	void onPlayerTargetChange(int target_x, int target_y) { player->aim(target_x, target_y); };
 	void onPlayerDropWeapon() { player->throwWeapon(); std::cout << "drop"; };
 };

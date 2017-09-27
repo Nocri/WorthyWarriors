@@ -14,7 +14,7 @@ void Projectle::move() {
 	float moveY = speed * sin((float)(3.14/180) *  (rotationAngle));
 	float moveX = speed * cos((float)(3.14/180) * (rotationAngle));
 		positionY -= moveY;
-		positionX += moveX;	
+		positionX -= moveX;	
 };
 
 void Projectle::draw(ViewEngine* engine) {
